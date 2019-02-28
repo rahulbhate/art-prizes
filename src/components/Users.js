@@ -9,7 +9,7 @@ class Users extends Component {
     try {
       this.setState({ loading: false });
       axios
-        .get(`https://api.github.com/users`)
+        .get(` https://jobs.search.gov/jobs/search.json?query=nursing+jobs`)
         .then(response => response.data)
         .then(response => this.setState({ response, loading: false }));
     } catch (error) {
@@ -37,8 +37,9 @@ class Users extends Component {
                 >
                   <div class="card-body">
                  
-                    <img alt={user.login} src={user.avatar_url} height={100} />
-                    <h5 className="card-title">{user.login}</h5>
+                    {/* <img alt={user.login} src={user.avatar_url} height={100} /> */}
+                    <h5 className="card-title">{user.locations}</h5>
+                    <p>{user.position_title}</p>
                    
                   </div>
                 </div>
