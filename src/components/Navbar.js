@@ -23,7 +23,7 @@ class Navbar extends Component {
             </li>
           </ul>
           <span className="navbar-text">
-            Navbar text with an inline element
+            Navbar text with an  online and inlindfe  inline element
           </span>
         </div>
       </nav>
