@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Card, CardDeck } from "react-bootstrap";
 class Users extends Component {
   state = {
     response: [],
@@ -9,7 +10,7 @@ class Users extends Component {
     try {
       this.setState({ loading: false });
       axios
-        .get(` https://jobs.search.gov/jobs/search.json?query=nursing+jobs`)
+        .get(`https://api.github.com/users?since=135`)
         .then(response => response.data)
         .then(response => this.setState({ response, loading: false }));
     } catch (error) {
@@ -22,31 +23,26 @@ class Users extends Component {
     console.log(userData);
 
     return (
-      <div>
+      <div className="card-columns ">
         {this.state.loading ? (
           "loading..."
         ) : (
-          <div>
+          <CardDeck>
+          <Card border="warning" style={{ width: "18rem" }}>
             {userData.map(user => {
               return (
-                <a href="#">
-                <div
-                  key={user.id}
-                  className="card text-white bg-info mb-3"
-                  style={{ maxWidth: 150 }}
-                >
-                  <div class="card-body">
-                 
-                    {/* <img alt={user.login} src={user.avatar_url} height={100} /> */}
-                    <h5 className="card-title">{user.locations}</h5>
-                    <p>{user.position_title}</p>
-                   
-                  </div>
-                </div>
-                </a>
+                <Card.Body>
+                  <Card.Img variant="top" src={user.avatar_url} />
+                  <Card.Title> Name: {user.login} </Card.Title>
+
+                  <Card.Footer>
+                    <small className="text-muted">Type: {user.type}</small>
+                  </Card.Footer>
+                </Card.Body>
               );
             })}
-          </div>
+          </Card>
+          </CardDeck>
         )}
       </div>
     );
